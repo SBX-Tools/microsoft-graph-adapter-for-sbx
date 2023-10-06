@@ -13,7 +13,11 @@ builder.Services.AddControllers(options =>
         options.Filters.Add<VersionHeaderFilter>();
         options.Filters.Add(new CompanyTenantIdFilter(builder.Configuration.GetSection("GraphSettings")["TenantId"] ?? throw new InvalidOperationException()));
     })
-    .AddJsonOptions(options => { options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; });
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 
