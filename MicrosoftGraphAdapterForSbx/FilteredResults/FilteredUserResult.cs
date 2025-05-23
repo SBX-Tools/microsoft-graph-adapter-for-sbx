@@ -33,6 +33,7 @@ public class FilteredUserResult : FilteredContentResult<User, GraphServiceUsersC
             Mail = user.Mail,
             MailboxSettings = user.MailboxSettings,
             UserPrincipalName = user.UserPrincipalName,
+            ProxyAddresses = user.ProxyAddresses,
         };
     }
 }

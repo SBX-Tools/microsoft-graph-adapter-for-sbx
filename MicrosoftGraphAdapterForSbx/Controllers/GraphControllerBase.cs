@@ -22,7 +22,7 @@ public class GraphControllerBase : ControllerBase
     [HttpGet("version")]
     public string GetGraphAdapterVersion()
     {
-        return "1.0.1";
+        return "1.0.2";
     }
 
 }

@@ -46,4 +46,17 @@ public class MailFolderGraphController : GraphControllerBase
                 })
         );
     }
+    
+    [HttpPost("{mailFolderId}/childFolders")]
+    public async Task<IActionResult> AddMailSubFolder([FromRoute] string userId, [FromRoute] string mailFolderId, [FromBody] MailFolder mailFolder)
+    {
+        return new FilteredMailFolderResult(
+            await GraphServiceClient.Users[userId].MailFolders[mailFolderId].ChildFolders
+                .Request(GetRequestQueryString())
+                .AddResponseAsync(new MailFolder
+                {
+                    DisplayName = mailFolder.DisplayName
+                })
+        );
+    }
 }
